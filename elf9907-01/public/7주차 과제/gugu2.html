@@ -1,0 +1,31 @@
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    table { border-collapse: collapse; width: 400px; margin:50px;}
+    td { padding: 9px; border: 2px solid #aaa;  text-align: center; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table>
+    <td  v-for="i in row">
+        <span v-for="j in column">
+            {{i+1}}&nbsp;*&nbsp;{{j}}&nbsp;=&nbsp;{{(i+1)*j}}<br/>
+        </span>
+    </td>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+          row : 8,
+          column : 9     
+      }
+    })
+   </script>
+</body>    
+</html>
