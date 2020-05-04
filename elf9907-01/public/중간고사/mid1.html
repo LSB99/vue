@@ -4,18 +4,15 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <style>
     div#app { padding: 30px; margin: 30px auto; max-width: 300px; 
-      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
-    span { display: inline-block; margin: 5px; padding: 8px 30px; 
-      border: 1px solid black; cursor: pointer; text-align: left;}
+      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa; width:600px; }
     div#app > div { margin-top: 20px; }
+    input[type=text] {width:130px; height:30px;}
     button { padding: 0.5em 2em; }
   </style>
 </head>
 <body>
   <div id="app">
-    <span v-for="i in a">
-      {{ i }}
-    </span>
+    <input type="text" v-model="number"/>
     <button type="button" v-on:click="increase">++</button>
     <button type="button" v-on:click="decrease">--</button>
   </div>
@@ -24,17 +21,15 @@
     var app = new Vue({
       el: '#app',
       data: {
-        a: [0]
+        number: 0
       },
       methods: {
         increase() {
-          for (let i=0; i < this.a.length; ++i)
-            Vue.set(this.a, i, this.a[i] + 1);
+          this.number++;
         },
 
         decrease() {
-          for (let i=0; i < this.a.length; ++i)
-            Vue.set(this.a, i, this.a[i] - 1);
+            this.number--;
         }
       }
     })
