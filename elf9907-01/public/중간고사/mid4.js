@@ -12,7 +12,7 @@ function test_sum(f){
     let a1 = [];   
 
     for(let i=0;i<5;i++){   //랜덤 값이 5개 들어있는 배열을 생성하고, 
-        a1[i] = Math.floor(Math.random()*(10-0+1) + 0);
+        a1[i] = Math.floor(Math.random()*(10-0+1) + 0); // 0~10 정수
     }
     console.log(a1);  //그 배열을 출력하고,
 
