@@ -5,8 +5,8 @@
   <style>
     div#app { padding: 30px; margin: 30px auto; max-width: 300px; 
       border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
-    span { display: block; margin: 5px; padding: 8px 15px; 
-      border: 1px solid black; cursor: pointer; }
+    span { display: inline-block; margin: 5px; padding: 8px 30px; 
+      border: 1px solid black; cursor: pointer; text-align: left;}
     div#app > div { margin-top: 20px; }
     button { padding: 0.5em 2em; }
   </style>
@@ -29,14 +29,12 @@
       methods: {
         increase() {
           for (let i=0; i < this.a.length; ++i)
-            this.a[i] += 1;
-          this.$forceUpdate();
+            Vue.set(this.a, i, this.a[i] + 1);
         },
 
         decrease() {
           for (let i=0; i < this.a.length; ++i)
-            this.a[i] -= 1;
-          this.$forceUpdate();
+            Vue.set(this.a, i, this.a[i] - 1);
         }
       }
     })

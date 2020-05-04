@@ -1,0 +1,41 @@
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    div#app { padding: 30px; margin: 30px auto; max-width: 600px; 
+      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
+    span { display: inline-block; margin: 20px; padding: 20px 40px; height:90px; width:80px;
+      border: 1px solid black; }
+    .yellow { background-color: #ffa; }
+    button { padding: 0.5em 2em; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button type="button" v-on:click="nothide" v-bind:disabled="show">보이기</button>
+    <button type="button" v-on:click="hide" v-bind:disabled="!show">감추기</button><br/>
+    <span class="yellow" v-show="shape"> </span>
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        show : true,
+        shape : true
+      },
+      methods:{
+        nothide(){
+            this.show = true;
+        },
+
+        hide(){
+            this.show =false;
+            this.shape = false;
+        }
+      }
+    })
+   </script>
+</body>    
+</html>
