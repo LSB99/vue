@@ -17,7 +17,7 @@
     <div>
     <input type="text" v-model="number"/>
       <button type="button" v-on:click="increase">생성</button>
-    </div>
+    </div><br/>
     <span v-for="i in a">
         {{ i }}
     </span>
@@ -32,8 +32,8 @@
       },
       methods: {
         increase() {
-          //this.a.length = this.number;
-          for(let i=0;i<number;i++){
+        this.a = [];
+          for(let i=0;i<this.number;i++){
             let value = Math.floor(Math.random()*(9-0+1)+0);
             this.a.push(value);
           }
