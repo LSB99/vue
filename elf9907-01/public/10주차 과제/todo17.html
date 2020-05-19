@@ -12,14 +12,14 @@
     <h1>할 일</h1>
 
     <ul>
-      <li v-for="(todo, index) in todoList">
-        <input type="checkbox" v-model="checked[index]" />
-        {{ todo }}
+      <li v-for="(todo, key) in todoMap">
+        <input type="checkbox" v-model="checked[key]" />
+        {{ todo.title }}
       </li>
     </ul>
 
-    <input type="text" v-model.trim="todo" />
-    <button type="button" v-on:click="addTodo" v-bind:disabled="!todo">할일 추가</button>
+    <input type="text" v-model.trim="todo.title" />
+    <button type="button" v-on:click="addTodo" v-bind:disabled="!todo.title">할일 추가</button>
     <button type="button" v-on:click="deleteTodo" v-show="checkedCount > 0">삭제</button>
 
   </div>
@@ -28,17 +28,16 @@
     var app = new Vue({
       el: '#app',
       data: {
-        todoList: [],
-        checked: [],
-        todo: "",
+        todoMap: {},
+        checked : {},
+        todo: {}
       },
-
       computed: {
         checkedCount: function() {
           let count = 0;
-          for (let i = 0; i < this.checked.length; ++i){
-            if (this.checked[i]){
-              ++count;
+          for(let key in this.todoMap){
+            if(this.checked[key]){
+              count++;
             }
           }
           return count;
@@ -47,24 +46,26 @@
 
       methods: {
         reload: function() {
-          axios.get('https://elf9907-01.firebaseio.com/todo1.json')
-               .then(response => this.todoList = response.data);
+          axios.get('https://elf9907-01.firebaseio.com/todo1(2).json')
+               .then(response => this.todoMap = response.data);
         },
       
         addTodo: function() {
-          axios.post('https://elf9907-01.firebaseio.com/todo1.json', this.todo)
+          axios.post('https://elf9907-01.firebaseio.com/todo1(2).json', this.todo)
                  .then(response => this.reload()); 
-          this.todo = "";
+
+          this.todo = {};
         },
         
         deleteTodo: function() {
 
-          for (let i = 0; i < this.todoList.length; ++i){
-            if (this.checked[i]){
-              axios.delete('https://elf9907-01.firebaseio.com/todo1/' + i + '.json')
+          for(let key in this.todoMap){
+            if(this.checked[key]){
+              axios.delete('https://elf9907-01.firebaseio.com/todo1(2)/' + key + '.json')
                  .then(response => this.reload());
             }
           }
+          this.checked = {};
         }
       }
     })
